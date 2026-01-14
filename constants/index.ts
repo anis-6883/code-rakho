@@ -1,3 +1,4 @@
+import { Theme } from "@/types";
 import { Monaco } from "@monaco-editor/react";
 
 type LanguageConfig = Record<
@@ -72,6 +73,43 @@ console.log('Squared numbers:', math.squares());
 console.log('Even numbers:', math.evenNumbers());
 console.log('Sum of numbers:', math.sum());`,
   },
+  coffeescript: {
+  id: "coffeescript",
+  label: "CoffeeScript",
+  logoPath: "/coffeescript.png",
+  pistonRuntime: { language: "coffeescript", version: "2.7.0" }, // API runtime
+  monacoLanguage: "coffeescript",
+  defaultCode: `
+  """
+A CoffeeScript sample.
+"""
+
+class Vehicle
+  constructor: (@name) =>
+  
+  drive: () =>
+    alert "Conducting #{@name}"
+
+class Car extends Vehicle
+  drive: () =>
+    alert "Driving #{@name}"
+
+c = new Car "Brandie"
+
+while notAtDestination()
+  c.drive()
+
+raceVehicles = (new Car for i in [1..100])
+
+startRace = (vehicles) -> [vehicle.drive() for vehicle in vehicles]
+
+fancyRegExp = ///
+  (d+) # numbers
+  (w*) # letters
+  $   # the end
+///
+`,
+},
   python: {
     id: "python",
     label: "Python",
@@ -210,6 +248,56 @@ func main() {
     println!("Sum of numbers: {}", sum);
 }`,
   },
+  c: {
+  id: "c",
+  label: "C",
+  logoPath: "/c.png",
+  pistonRuntime: { language: "c", version: "11.0.0" }, // API runtime (C11)
+  monacoLanguage: "c",
+  defaultCode: `// C Playground
+#include <stdio.h>
+
+int main() {
+    int numbers[] = {1, 2, 3, 4, 5};
+    int length = sizeof(numbers) / sizeof(numbers[0]);
+
+    printf("Original numbers: ");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\\n");
+
+    // Map numbers to their squares
+    int squares[length];
+    for (int i = 0; i < length; i++) {
+        squares[i] = numbers[i] * numbers[i];
+    }
+
+    printf("Squared numbers: ");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", squares[i]);
+    }
+    printf("\\n");
+
+    // Filter even numbers
+    printf("Even numbers: ");
+    for (int i = 0; i < length; i++) {
+        if (numbers[i] % 2 == 0) {
+            printf("%d ", numbers[i]);
+        }
+    }
+    printf("\\n");
+
+    // Calculate sum
+    int sum = 0;
+    for (int i = 0; i < length; i++) {
+        sum += numbers[i];
+    }
+    printf("Sum of numbers: %d\\n", sum);
+
+    return 0;
+}`,
+},
   cpp: {
     id: "cpp",
     label: "C++",
@@ -285,6 +373,31 @@ class Program {
     }
 }`,
   },
+  php: {
+  id: "php",
+  label: "PHP",
+  logoPath: "/php.png",
+  pistonRuntime: { language: "php", version: "8.2.0" }, // API runtime
+  monacoLanguage: "php",
+  defaultCode: `<?php
+// PHP Playground
+
+$numbers = [1, 2, 3, 4, 5];
+
+// Map numbers to their squares
+$squares = array_map(fn($n) => $n * $n, $numbers);
+echo "Original numbers: " . implode(", ", $numbers) . PHP_EOL;
+echo "Squared numbers: " . implode(", ", $squares) . PHP_EOL;
+
+// Filter even numbers
+$evenNumbers = array_filter($numbers, fn($n) => $n % 2 === 0);
+echo "Even numbers: " . implode(", ", $evenNumbers) . PHP_EOL;
+
+// Calculate sum using reduce
+$sum = array_reduce($numbers, fn($acc, $curr) => $acc + $curr, 0);
+echo "Sum of numbers: $sum" . PHP_EOL;
+?>`,
+},
   ruby: {
     id: "ruby",
     label: "Ruby",
@@ -333,7 +446,47 @@ print("Even numbers: \\(evenNumbers)")
 let sum = numbers.reduce(0, +)
 print("Sum of numbers: \\(sum)")`,
   },
+  docker: {
+  id: "docker",
+  label: "Docker",
+  logoPath: "/docker.png",
+  pistonRuntime: { language: "dockerfile", version: "20.10" }, // API runtime
+  monacoLanguage: "dockerfile",
+  defaultCode: `# Docker Playground
+# Simple Node.js Dockerfile example
+
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy application source
+COPY . .
+
+# Expose application port
+EXPOSE 3000
+
+# Start the application
+CMD ["node", "index.js"]
+`,
+}
+
 };
+
+
+export const THEMES: Theme[] = [
+  { id: "vs-dark", label: "VS Dark", color: "#1e1e1e" },
+  { id: "vs-light", label: "VS Light", color: "#ffffff" },
+  { id: "github-dark", label: "GitHub Dark", color: "#0d1117" },
+  { id: "monokai", label: "Monokai", color: "#272822" },
+  { id: "solarized-dark", label: "Solarized Dark", color: "#002b36" },
+];
 
 
 export const THEME_DEFINITONS = {

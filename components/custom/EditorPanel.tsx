@@ -10,6 +10,7 @@ import { useClerk } from "@clerk/nextjs";
 import { EditorPanelSkeleton } from "./EditorPanelSkeleton";
 import useMounted from "@/hooks/useMounted";
 import LanguageSelector from "./LanguageSelector";
+import ThemeSelector from "./ThemeSelector";
 
 function EditorPanel() {
   const clerk = useClerk();
@@ -70,7 +71,10 @@ function EditorPanel() {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <LanguageSelector hasAccess />
+            <div className="flex items-center gap-3">
+              <ThemeSelector />
+              <LanguageSelector hasAccess />
+            </div>
             {/* Font Size Slider */}
             <div className="flex items-center gap-3 px-3 py-2 bg-[#1e1e2e] rounded-lg ring-1 ring-white/5">
               <TypeIcon className="size-4 text-gray-400" />

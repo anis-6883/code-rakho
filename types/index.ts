@@ -1,5 +1,10 @@
 import { Monaco } from "@monaco-editor/react";
 
+export interface Theme {
+  id: string;
+  label: string;
+  color: string;
+}
 export interface ExecutionResult {
   code: string;
   output: string;
