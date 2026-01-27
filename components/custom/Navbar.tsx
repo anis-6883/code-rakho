@@ -3,9 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Code2 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { LoginModal } from "./LoginModal";
 
 export function Navbar() {
   const pathname = usePathname();
+  const [loginOpen, setLoginOpen] = useState(false);
 
   return (
     <nav className="flex items-center justify-between px-6 py-4 md:px-12 md:py-6 border-b border-slate-800/50 bg-linear-to-b from-slate-950 to-slate-900">
@@ -38,7 +41,10 @@ export function Navbar() {
         </a>
       </div>
 
-      <Button className="bg-blue-600 hover:bg-blue-700 text-white">Get Started</Button>
+      <Button onClick={() => setLoginOpen(true)} className="bg-blue-600 hover:bg-blue-700 text-white">Get Started</Button>
+
+       {/* Login Modal */}
+      <LoginModal open={loginOpen} onOpenChange={setLoginOpen} />
     </nav>
   );
 }
