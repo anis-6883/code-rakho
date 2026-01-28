@@ -1,9 +1,7 @@
-
-
-import { create } from "zustand";
-import { Monaco } from "@monaco-editor/react";
-import { CodeEditorState } from "@/types";
 import { LANGUAGE_CONFIG } from "@/constants";
+import { CodeEditorState } from "@/types";
+import { Monaco } from "@monaco-editor/react";
+import { create } from "zustand";
 
 const getInitialState = () => {
   // if we're on the server, return default values
@@ -11,7 +9,7 @@ const getInitialState = () => {
     return {
       language: "javascript",
       fontSize: 16,
-      theme: "vs-dark",
+      theme: "vs-dark"
     };
   }
 
@@ -23,7 +21,7 @@ const getInitialState = () => {
   return {
     language: savedLanguage,
     theme: savedTheme,
-    fontSize: Number(savedFontSize),
+    fontSize: Number(savedFontSize)
   };
 };
 
@@ -69,7 +67,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
       set({
         language,
         output: "",
-        error: null,
+        error: null
       });
     },
 
@@ -89,13 +87,13 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
         const response = await fetch("https://emkc.org/api/v2/piston/execute", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
           body: JSON.stringify({
             language: runtime.language,
             version: runtime.version,
-            files: [{ content: code }],
-          }),
+            files: [{ content: code }]
+          })
         });
 
         const data = await response.json();
@@ -116,8 +114,8 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
             executionResult: {
               code,
               output: "",
-              error,
-            },
+              error
+            }
           });
           return;
         }
@@ -129,8 +127,8 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
             executionResult: {
               code,
               output: "",
-              error,
-            },
+              error
+            }
           });
           return;
         }
@@ -144,19 +142,19 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
           executionResult: {
             code,
             output: output.trim(),
-            error: null,
-          },
+            error: null
+          }
         });
       } catch (error) {
         console.log("Error running code:", error);
         set({
           error: "Error running code",
-          executionResult: { code, output: "", error: "Error running code" },
+          executionResult: { code, output: "", error: "Error running code" }
         });
       } finally {
         set({ isRunning: false });
       }
-    },
+    }
   };
 });
 
