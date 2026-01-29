@@ -2,8 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Github, Mail } from "lucide-react";
+import { Code2, Github } from "lucide-react";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 import { useState } from "react";
 
 interface LoginModalProps {
@@ -38,7 +39,12 @@ export function LoginModal({ open, onOpenChange }: LoginModalProps) {
         <DialogHeader className='space-y-4'>
           <div className='space-y-2 text-center'>
             <div className='flex justify-center mb-4'>
-              <div className='w-12 h-12 bg-linear-to-br from-blue-500 to-cyan-500 rounded-xl'></div>
+              <Link href='/' className='flex items-center gap-2'>
+                <div className='w-8 h-8 bg-linear-to-br from-blue-500 to-cyan-500 rounded-md flex items-center justify-center'>
+                  <Code2 className='w-5 h-5 text-white' />
+                </div>
+                <span className='text-xl font-bold text-white'>Root</span>
+              </Link>
             </div>
             <DialogTitle className='text-2xl font-bold text-white'>Welcome Back</DialogTitle>
             <p className='text-slate-400 text-sm'>Sign in to your account to continue</p>
@@ -50,7 +56,7 @@ export function LoginModal({ open, onOpenChange }: LoginModalProps) {
           <Button
             onClick={handleGoogleLogin}
             disabled={isLoading}
-            className='w-full h-11 bg-white hover:bg-slate-100 text-slate-900 font-semibold transition-all duration-300 flex items-center justify-center gap-3 group'
+            className='w-full cursor-pointer h-11 bg-white hover:bg-slate-100 text-slate-900 font-semibold transition-all duration-300 flex items-center justify-center gap-3 group'
           >
             <svg className='w-5 h-5' viewBox='0 0 24 24' fill='none'>
               <path
@@ -77,7 +83,7 @@ export function LoginModal({ open, onOpenChange }: LoginModalProps) {
           <Button
             onClick={handleGithubLogin}
             disabled={isLoading}
-            className='w-full h-11 bg-slate-800 hover:bg-slate-700 text-white font-semibold transition-all duration-300 flex items-center justify-center gap-3 border border-slate-700/50 group'
+            className='w-full cursor-pointer h-11 bg-slate-800 hover:bg-slate-700 text-white font-semibold transition-all duration-300 flex items-center justify-center gap-3 border border-slate-700/50 group'
           >
             <Github className='w-5 h-5' />
             <span>Continue with GitHub</span>
@@ -85,28 +91,28 @@ export function LoginModal({ open, onOpenChange }: LoginModalProps) {
         </div>
 
         {/* Divider */}
-        <div className='flex items-center gap-3 py-2'>
+        {/* <div className='flex items-center gap-3 py-2'>
           <div className='flex-1 h-px bg-slate-700/50'></div>
           <span className='text-xs text-slate-500'>Or continue with email</span>
           <div className='flex-1 h-px bg-slate-700/50'></div>
-        </div>
+        </div> */}
 
         {/* Email Login Button */}
-        <Button
+        {/* <Button
           variant='outline'
           className='w-full h-11 border-slate-700/50 text-slate-300 hover:bg-slate-800/50 font-semibold transition-all duration-300 flex items-center justify-center gap-3 bg-transparent'
         >
           <Mail className='w-5 h-5' />
           <span>Sign in with Email</span>
-        </Button>
+        </Button> */}
 
         {/* Footer */}
-        <div className='text-center pt-4'>
+        {/* <div className='text-center pt-4'>
           <p className='text-slate-400 text-sm'>
             Don{"'"}t have an account?{" "}
             <button className='text-blue-400 hover:text-blue-300 font-semibold transition-colors'>Sign up</button>
           </p>
-        </div>
+        </div> */}
 
         {/* Terms */}
         <p className='text-xs text-slate-500 text-center'>
