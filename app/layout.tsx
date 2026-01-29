@@ -1,5 +1,4 @@
 import GoogleOneTap from "@/components/custom/GoogleOneTap";
-import ClerkClientProvider from "@/components/providers/ClerkProvider";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { NextIntlClientProvider } from "next-intl";
@@ -30,9 +29,7 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <SessionProvider>
-          <ClerkClientProvider>
-            <NextIntlClientProvider>{children}</NextIntlClientProvider>
-          </ClerkClientProvider>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
           <GoogleOneTap />
         </SessionProvider>
       </body>
