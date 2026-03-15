@@ -1,0 +1,34 @@
+{
+  "Navbar": {
+    "home": "Home",
+    "editor": "Editor",
+    "docs": "Docs",
+    "login": "Login"
+  },
+  "HomePage": {
+    "bannerTitle": "Share code snippets with your team",
+    "shareCode": "Share Code",
+    "instantly": "Instantly",
+    "bannerSubtitle": "A secure, simple code snippet sharing platform built for your team. Save, organize, and collaborate on code without leaving your workflow.",
+    "startShareing": "Start Sharing",
+    "viewDemo": "View Demo",
+    "everythingYouNeed": "Everything You Need",
+    "designedForDevelopers": "Designed specifically for developers and engineering teams",
+    "instantSharing": "Instant Sharing",
+    "generateShareableLinks": "Generate shareable links in seconds. Perfect for code reviews and team collaboration.",
+    "privateAndSecure": "Private & Secure",
+    "teamOnly": "Only accessible to team members. Your code stays private and protected.",
+    "lightningFast": "Lightning Fast",
+    "optimizedPerformance": "Optimized performance with syntax highlighting and instant search.",
+    "teamCollaboration": "Team Collaboration",
+    "organizeSnippets": "Organize snippets in collections and share with your entire team.",
+    "easyCopy": "Easy Copy",
+    "oneClickCopy": "One-click copy with syntax highlighting for multiple languages.",
+    "allLanguages": "All Languages",
+    "supportsAllMajorLanguages": "Support for all major programming languages and markup formats.",
+    "readyToCollaborate": "Ready to collaborate better?",
+    "joinTeam": "Join your team on Root Code Snipper today.",
+    "getStarted": "Get Started Free",
+    "contactSales": "Contact Sales"
+  }
+}
