@@ -1,3 +1,4 @@
+import ClientLayout from "@/components/custom/ClientLayout";
 import GoogleOneTap from "@/components/custom/GoogleOneTap";
 import { TRPCReactProvider } from "@/trpc/client";
 import type { Metadata } from "next";
@@ -31,7 +32,12 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <SessionProvider>
           <NextIntlClientProvider>
-            <TRPCReactProvider>{children}</TRPCReactProvider>
+            <TRPCReactProvider>
+              <ClientLayout>
+                {children}
+              </ClientLayout>
+
+            </TRPCReactProvider>
           </NextIntlClientProvider>
           <GoogleOneTap />
         </SessionProvider>

@@ -3,10 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getSupabaseBrowserClient } from "@/lib/supabase/browser-client";
-import { User } from "@supabase/supabase-js";
 import { Code2, Github } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface LoginModalProps {
   open: boolean;
@@ -16,18 +15,18 @@ interface LoginModalProps {
 export function LoginModal({ open, onOpenChange }: LoginModalProps) {
   const supabase = getSupabaseBrowserClient();
   const [isLoading, setIsLoading] = useState(false);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
 
   const handleGoogleLogin = async () => {
     setIsLoading(true);
     try {
       // await signIn("google");
       await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-      },
-    });
+        provider: "google",
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
+      });
     } finally {
       setIsLoading(false);
     }
@@ -38,29 +37,16 @@ export function LoginModal({ open, onOpenChange }: LoginModalProps) {
     try {
       // await signIn("github");
       await supabase.auth.signInWithOAuth({
-      provider: "github",
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-      },
-    });
+        provider: "github",
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
-  useEffect(() => {
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setCurrentUser(session?.user ?? null);
-      }
-    );
-
-    return () => {
-      listener?.subscription.unsubscribe();
-    };
-  }, [supabase]);
-
-  console.log({currentUser})
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

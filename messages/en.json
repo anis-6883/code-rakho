@@ -3,7 +3,8 @@
     "home": "Home",
     "editor": "Editor",
     "docs": "Docs",
-    "login": "Login"
+    "login": "Login",
+    "logout": "LogOut"
   },
   "HomePage": {
     "bannerTitle": "Share code snippets with your team",

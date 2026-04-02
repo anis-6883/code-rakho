@@ -1,12 +1,9 @@
-import { Navbar } from "@/components/custom/Navbar";
 import { Button } from "@/components/ui/button";
-import { getUserLocale } from "@/config/locale";
 import { serverTRPC } from "@/trpc/server";
 import { Code2, Copy, Lock, Share2, Users, Zap } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 export default async function Home() {
-  const locale = await getUserLocale();
   const t = await getTranslations("HomePage");
 
   const caller = await serverTRPC();
@@ -15,12 +12,8 @@ export default async function Home() {
     message: 'Hello from Server Component',
   });
 
-  console.log({ result })
-
   return (
-    <div className='min-h-screen bg-linear-to-b from-slate-950 via-slate-900 to-slate-950'>
-      {/* Navigation */}
-      <Navbar locale={locale} />
+    <div>
 
       {/* Hero Section */}
       <div className='max-w-6xl mx-auto px-6 md:px-12 py-20 md:py-32'>
@@ -152,27 +145,6 @@ export default async function Home() {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className='border-t border-slate-800/50 py-8 px-6 md:px-12'>
-        <div className='max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-slate-400 text-sm'>
-          <div className='flex items-center gap-2'>
-            <div className='w-6 h-6 bg-linear-to-br from-blue-500 to-cyan-500 rounded-md'></div>
-            <span>Root Code Snipper © 2026</span>
-          </div>
-          <div className='flex gap-6'>
-            <a href='#' className='hover:text-slate-200 transition-colors'>
-              Privacy
-            </a>
-            <a href='#' className='hover:text-slate-200 transition-colors'>
-              Terms
-            </a>
-            <a href='#' className='hover:text-slate-200 transition-colors'>
-              GitHub
-            </a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
