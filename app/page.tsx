@@ -1,12 +1,22 @@
 import { Navbar } from "@/components/custom/Navbar";
 import { Button } from "@/components/ui/button";
 import { getUserLocale } from "@/config/locale";
+import { serverTRPC } from "@/trpc/server";
 import { Code2, Copy, Lock, Share2, Users, Zap } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 export default async function Home() {
   const locale = await getUserLocale();
   const t = await getTranslations("HomePage");
+
+  const caller = await serverTRPC();
+
+  const result = await caller.users.greet({
+    message: 'Hello from Server Component',
+  });
+
+  console.log({ result })
+
   return (
     <div className='min-h-screen bg-linear-to-b from-slate-950 via-slate-900 to-slate-950'>
       {/* Navigation */}

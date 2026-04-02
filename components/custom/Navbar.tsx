@@ -35,9 +35,9 @@ export function Navbar({ locale }: { locale: string }) {
         >
           {t("editor")}
         </Link>
-        <a href='#' className='text-slate-400 hover:text-slate-200 transition-colors'>
+        <Link href='/docs' className='text-slate-400 hover:text-slate-200 transition-colors'>
           {t("docs")}
-        </a>
+        </Link>
       </div>
 
       <div className='flex items-center gap-4'>

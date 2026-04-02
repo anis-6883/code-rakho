@@ -36,7 +36,7 @@ export default async function CodeSnippetHighlighter({ code, lang = "tsx", theme
       {/* SCROLLABLE CODE AREA */}
       <div className='flex-1 overflow-auto flex w-full text-gray-200 font-mono text-[13px] leading-relaxed'>
         {/* LINE NUMBERS */}
-        <div className='select-none text-right pr-4 py-3 pl-2 text-gray-500'>
+        <div className='select-none text-right pr-4 pl-2 text-gray-500'>
           {Array.from({ length: lines }).map((_, i) => (
             <div key={i} className='leading-relaxed'>
               {i + 1}
