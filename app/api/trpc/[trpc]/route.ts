@@ -1,5 +1,7 @@
-import { createContext } from "@/trpc-server/context";
-import { appRouter } from "@/trpc-server/router";
+export const dynamic = "force-dynamic";
+
+import { createTRPCContext } from "@/trpc/context";
+import { appRouter } from "@/trpc/routers/_app";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 
 const handler = (req: Request) =>
@@ -7,7 +9,7 @@ const handler = (req: Request) =>
     endpoint: "/api/trpc",
     req,
     router: appRouter,
-    createContext: async () => await createContext()
+    createContext: async () => await createTRPCContext()
   });
 
 export { handler as GET, handler as POST };

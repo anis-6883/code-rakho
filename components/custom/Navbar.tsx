@@ -1,17 +1,35 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { getSupabaseBrowserClient } from "@/lib/supabase/browser-client";
+import { User } from "@supabase/supabase-js";
 import { Code2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { LoginModal } from "./LoginModal";
+import { ProfileDropdownMenu } from "./profile-dropdown-menu";
 
-export function Navbar({ locale }: { locale: string }) {
+export function Navbar({ locale, user }: { locale: string; user: User | null }) {
   const t = useTranslations("Navbar");
   const pathname = usePathname();
   const [loginOpen, setLoginOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User | null>(user);
+
+  const supabase = getSupabaseBrowserClient();
+
+  useEffect(() => {
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setCurrentUser(session?.user ?? null);
+      }
+    );
+
+    return () => {
+      listener?.subscription.unsubscribe();
+    };
+  }, [supabase]);
 
   return (
     <nav className='flex items-center justify-between px-6 py-4 md:px-12 md:py-6 border-b border-slate-800/50 bg-linear-to-b from-slate-950 to-slate-900'>
@@ -42,9 +60,12 @@ export function Navbar({ locale }: { locale: string }) {
 
       <div className='flex items-center gap-4'>
         <LanguageSwitcher locale={locale} />
-        <Button onClick={() => setLoginOpen(true)} className='bg-blue-600 cursor-pointer hover:bg-blue-700 text-white'>
-          {t("login")}
-        </Button>
+        {
+          currentUser?.id ? (<ProfileDropdownMenu setCurrentUser={setCurrentUser} currentUser={currentUser} />) : (<Button onClick={() => setLoginOpen(true)} className='bg-blue-600 cursor-pointer hover:bg-blue-700 text-white'>
+            {t("login")}
+          </Button>)
+        }
+
       </div>
 
       {/* Login Modal */}

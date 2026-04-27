@@ -1,5 +1,5 @@
 import GoogleOneTap from "@/components/custom/GoogleOneTap";
-import { Provider } from "@/components/custom/reactQuery-provider";
+import { TRPCReactProvider } from "@/trpc/client";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { NextIntlClientProvider } from "next-intl";
@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <SessionProvider>
           <NextIntlClientProvider>
-            <Provider>{children}</Provider>
+            <TRPCReactProvider>{children}</TRPCReactProvider>
           </NextIntlClientProvider>
           <GoogleOneTap />
         </SessionProvider>
