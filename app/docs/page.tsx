@@ -138,7 +138,7 @@ export default async function CodeSnippetHighlighter({ code, lang = "tsx", theme
   return (
     <div className='w-full h-100 border border-gray-400 rounded-lg text-sm overflow-hidden flex flex-col bg-[#0A0A0A]'>
       {/* HEADER */}
-      <div className='flex items-center justify-between border-b border-gray-400 p-4 flex-shrink-0 bg-[#0A0A0A] z-10'>
+      <div className='flex items-center justify-between border-b border-gray-400 p-4 shrink-0 bg-[#0A0A0A] z-10'>
         <div className='flex items-center gap-3'>
           <div className='flex gap-1.5'>
             <span className='w-3 h-3 rounded-full bg-[#ff5f57]'></span>
@@ -176,7 +176,7 @@ export default async function DocsPage() {
 
   return (
     <div className='min-h-screen bg-gray-900'>
-      <Navbar locale={locale} />
+      <Navbar locale={locale} user={null} />
       <div className=' p-4 space-y-4'>
         <CodeSnippetHighlighter lang='tsx' code={code} />
 

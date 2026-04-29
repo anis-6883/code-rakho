@@ -1,4 +1,7 @@
 {
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Default Dark Modern",
+  "editor.fontSize": 17,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "prettier.jsxSingleQuote": true,
@@ -13,7 +16,8 @@
   "prettier.trailingComma": "none",
   "prettier.htmlWhitespaceSensitivity": "ignore",
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.tslint": "explicit",
     "source.organizeImports": "explicit"
   },
   "workbench.colorCustomizations": {
@@ -36,6 +40,21 @@
     "titleBar.inactiveForeground": "#e7e7e799"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "css.validate": false,
+  "tailwindCSS.emmetCompletions": false,
+  "explorer.confirmDelete": false,
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "terminal.integrated.fontFamily": "'Fira Code', monospace",
+  "editor.mouseWheelZoom": true,
+  "files.associations": {
+    "*.html": "html"
+  },
+  "explorer.confirmDragAndDrop": false,
+  "workbench.startupEditor": "none",
+  "editor.guides.bracketPairs": true,
+  "terminal.integrated.fontSize": 16,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "window.zoomLevel": 1
 }

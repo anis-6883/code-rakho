@@ -20,11 +20,9 @@ export function Navbar({ locale, user }: { locale: string; user: User | null }) 
   const supabase = getSupabaseBrowserClient();
 
   useEffect(() => {
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setCurrentUser(session?.user ?? null);
-      }
-    );
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setCurrentUser(session?.user ?? null);
+    });
 
     return () => {
       listener?.subscription.unsubscribe();
@@ -32,15 +30,15 @@ export function Navbar({ locale, user }: { locale: string; user: User | null }) 
   }, [supabase]);
 
   return (
-    <nav className='flex items-center justify-between px-6 py-4 md:px-12 md:py-6 border-b border-slate-800/50 bg-linear-to-b from-slate-950 to-slate-900'>
+    <nav className='grid grid-cols-1 md:grid-cols-3 items-center px-6 py-4 md:px-12 md:py-6 border-b border-slate-800/50 bg-linear-to-b from-slate-950 to-slate-900'>
       <Link href='/' className='flex items-center gap-2'>
         <div className='w-8 h-8 bg-linear-to-br from-blue-500 to-cyan-500 rounded-md flex items-center justify-center'>
           <Code2 className='w-5 h-5 text-white' />
         </div>
-        <span className='text-xl font-bold text-white'>Root</span>
+        <span className='text-xl font-bold text-white'>{process.env.NEXT_PUBLIC_APP_NAME}</span>
       </Link>
 
-      <div className='hidden md:flex items-center gap-8'>
+      <div className='hidden md:flex items-center justify-center gap-8'>
         <Link
           href='/'
           className={`transition-colors ${pathname === "/" ? "text-white font-medium" : "text-slate-400 hover:text-slate-200"}`}
@@ -58,14 +56,15 @@ export function Navbar({ locale, user }: { locale: string; user: User | null }) 
         </Link>
       </div>
 
-      <div className='flex items-center gap-4'>
+      <div className='hidden md:flex items-center justify-end gap-4'>
         <LanguageSwitcher locale={locale} />
-        {
-          currentUser?.id ? (<ProfileDropdownMenu setCurrentUser={setCurrentUser} currentUser={currentUser} />) : (<Button onClick={() => setLoginOpen(true)} className='bg-blue-600 cursor-pointer hover:bg-blue-700 text-white'>
+        {currentUser?.id ? (
+          <ProfileDropdownMenu setCurrentUser={setCurrentUser} currentUser={currentUser} />
+        ) : (
+          <Button onClick={() => setLoginOpen(true)} className='bg-blue-600 cursor-pointer hover:bg-blue-700 text-white'>
             {t("login")}
-          </Button>)
-        }
-
+          </Button>
+        )}
       </div>
 
       {/* Login Modal */}
