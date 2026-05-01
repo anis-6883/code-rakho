@@ -8,9 +8,20 @@ export default async function Home() {
 
   const caller = await serverTRPC();
 
-  const result = await caller.users.greet({
-    message: 'Hello from Server Component',
-  });
+  // const result = await caller.users.createUser({
+  //   name: 'John Doe',
+  //   email: 'john.doe@example.com',
+  //   post: {
+  //     title: 'My First Post',
+  //     content: 'This is the content of my first post.',
+  //     published: true,
+  //   },
+  // });
+
+  // console.log("Created User:", result);
+
+  const users = await caller.users.getAllUsers();
+  console.log("All Users:", users);
 
   return (
     <div>
