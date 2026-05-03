@@ -9,10 +9,21 @@ export default async function Home() {
   const t = await getTranslations("HomePage");
   const locale = await getUserLocale();
   const caller = await serverTRPC();
+  
+  // const result = await caller.users.createUser({
+  //   name: 'John Doe',
+  //   email: 'john.doe@example.com',
+  //   post: {
+  //     title: 'My First Post',
+  //     content: 'This is the content of my first post.',
+  //     published: true,
+  //   },
+  // });
 
-  const result = await caller.users.greet({
-    message: "Hello from Server Component"
-  });
+  // console.log("Created User:", result);
+
+  const users = await caller.users.getAllUsers();
+  console.log("All Users:", users);
 
   return (
     <div className='min-h-screen bg-linear-to-b from-slate-950 via-slate-900 to-slate-950'>
