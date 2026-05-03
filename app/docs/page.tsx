@@ -1,4 +1,6 @@
 import CodeSnippetHighlighter from "@/components/custom/CodeSnippetHighlighter";
+import { Navbar } from "@/components/custom/Navbar";
+import { getUserLocale } from "@/config/locale";
 
 const pythonCodeExample = `
 class User:
@@ -136,7 +138,7 @@ export default async function CodeSnippetHighlighter({ code, lang = "tsx", theme
   return (
     <div className='w-full h-100 border border-gray-400 rounded-lg text-sm overflow-hidden flex flex-col bg-[#0A0A0A]'>
       {/* HEADER */}
-      <div className='flex items-center justify-between border-b border-gray-400 p-4 flex-shrink-0 bg-[#0A0A0A] z-10'>
+      <div className='flex items-center justify-between border-b border-gray-400 p-4 shrink-0 bg-[#0A0A0A] z-10'>
         <div className='flex items-center gap-3'>
           <div className='flex gap-1.5'>
             <span className='w-3 h-3 rounded-full bg-[#ff5f57]'></span>
@@ -170,18 +172,42 @@ export default async function CodeSnippetHighlighter({ code, lang = "tsx", theme
 `;
 
 export default async function DocsPage() {
+  const locale = await getUserLocale();
 
   return (
-    <div className=' p-4 space-y-4'>
-      <CodeSnippetHighlighter lang='tsx' code={code} />
+    <div className='min-h-screen bg-gray-900'>
+      <Navbar locale={locale} user={null} />
+      <div className=' p-4 space-y-4'>
+        <CodeSnippetHighlighter lang='tsx' code={code} />
 
-      <CodeSnippetHighlighter lang='python' code={pythonCodeExample} />
+        <CodeSnippetHighlighter lang='python' code={pythonCodeExample} />
 
-      <CodeSnippetHighlighter lang='php' code={phpCodeExample} />
+        <CodeSnippetHighlighter lang='php' code={phpCodeExample} />
 
-      <CodeSnippetHighlighter lang='java' code={javaCodeExample} />
+        <CodeSnippetHighlighter lang='java' code={javaCodeExample} />
 
-      <CodeSnippetHighlighter lang='go' code={goCodeExample} />
+        <CodeSnippetHighlighter lang='go' code={goCodeExample} />
+      </div>
+
+      <footer className='border-t border-slate-800/50 py-8 px-6 md:px-12'>
+        <div className='max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-slate-400 text-sm'>
+          <div className='flex items-center gap-2'>
+            <div className='w-6 h-6 bg-linear-to-br from-blue-500 to-cyan-500 rounded-md'></div>
+            <span>Root Code Snipper © 2026</span>
+          </div>
+          <div className='flex gap-6'>
+            <a href='#' className='hover:text-slate-200 transition-colors'>
+              Privacy
+            </a>
+            <a href='#' className='hover:text-slate-200 transition-colors'>
+              Terms
+            </a>
+            <a href='#' className='hover:text-slate-200 transition-colors'>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
